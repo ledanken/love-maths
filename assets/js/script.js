@@ -32,12 +32,27 @@ function runGame(gameType) {
         displayAdditionQuestion(num1, num2);
     } else {
         alert(`ùnknown game type: ${gameType}`);
-        throw `unknown game type: ${gameType}.Aborting!`;
+        throw `unknown game type: ${gameType}. Aborting!`;
     }
 }
 
+/**
+ * check the answwer the first element in
+ * the returned calculateCorrectAnswer array
+ */
 function checkAnswer() {
 
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswwer = calculateCorrectAnswer(); 
+    let isCorrect = userAnswer === calculatedAnswwer[0];
+
+    if (isCorrect) {
+        alert("Hey! You got it right! :D");
+    } else {
+        alert(`Awwww... you answered ${userAnswer}. The correct answer was ${calculatedAnswwer[0]}!`);
+    }
+
+    runGame(calculatedAnswwer[1]);
 }
 
 /**
@@ -54,7 +69,7 @@ function calculateCorrectAnswer() {
         return [operand1 + operand2, "addition"];
     } else {
         alert(`unimplemented operator ${operator}`);
-        throw `unimplemented operator ${operator}. Aboring!`;
+        throw `unimplemented operator ${operator}. Aborting!`;
     }
 }
 
